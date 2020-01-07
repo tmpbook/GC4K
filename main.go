@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	orm "github.com/tmpbook/GC4K/database"
+	orm "github.com/tmpbook/GC4K/models"
 	"github.com/tmpbook/GC4K/router"
 	"github.com/tmpbook/GC4K/types"
 )
