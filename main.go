@@ -2,11 +2,13 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	orm "github.com/tmpbook/GC4K/database"
 	"github.com/tmpbook/GC4K/router"
 	"github.com/tmpbook/GC4K/types"
 )
 
 func main() {
+	defer orm.DB.Close()
 	// 不包含任何 middleware
 	r := gin.New()
 
@@ -24,5 +26,5 @@ func main() {
 	router.RegisterRouter(r)
 
 	// Listen and serve on 0.0.0.0:8080
-	r.Run(":8080")
+	r.Run(":8088")
 }
