@@ -8,8 +8,19 @@ import (
 // User 用户模型
 type User struct {
 	gorm.Model
-	Username string `json:"username"` // 列名为 `username`
-	Password string `json:"password"` // 列名为 `password`
+	Username string  `json:"username"` // 列名为 `username`
+	Password string  `json:"password"` // 列名为 `password`
+	CnName   string  `json:"cnname"`
+	IsActive bool    `json:"isactive"`
+	Profile  Profile //与Profile为one2one关系
+	Apps     []App   //与App为one2many关系
+}
+
+type Profile struct {
+	gorm.Model
+	UserID  uint   `gorm:"index"` // 外键 (属于), tag `index`是为该列创建索引
+	Email   string `json:"email"`
+	Address string `json:"address"`
 }
 
 const (
