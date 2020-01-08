@@ -6,9 +6,9 @@ import (
 	"github.com/Unknwon/goconfig"
 	_ "github.com/go-sql-driver/mysql" //加载mysql
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
+// DB ...
 var DB *gorm.DB
 
 func init() {
