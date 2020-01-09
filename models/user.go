@@ -16,7 +16,6 @@ type User struct {
 	Apps     []App   //与App为one2many关系
 }
 
-// Profile 描述信息模型
 type Profile struct {
 	gorm.Model
 	UserID  uint   `gorm:"index"` // 外键 (属于), tag `index`是为该列创建索引
@@ -27,12 +26,6 @@ type Profile struct {
 const (
 	// PassWordCost 密码加密难度
 	PassWordCost = 12
-	// Active 激活用户
-	Active string = "active"
-	// Inactive 未激活用户
-	Inactive string = "inactive"
-	// Suspend 被封禁用户
-	Suspend string = "suspend"
 )
 
 // SetPassword 设置密码
@@ -49,4 +42,14 @@ func (user *User) SetPassword(password string) error {
 func (user *User) CheckPassword(password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 	return err == nil
+}
+
+func (user *User) CheckAuth() bool {
+	var auth User
+	DB.Select("id").Where(user).First(&auth)
+	if auth.ID > 0 {
+		return true
+	}
+
+	return false
 }

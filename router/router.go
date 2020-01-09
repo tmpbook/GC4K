@@ -8,9 +8,10 @@ import (
 
 // RegisterRouter 注册路由
 func RegisterRouter(r *gin.Engine) {
+	r.GET("/auth", controllers.GetAuth)
 	apiAuthorized := r.Group("/api")
 	// 单路由的 middleware
-	apiAuthorized.Use(middlewares.APIAuth())
+	apiAuthorized.Use(middlewares.UserAuth(), middlewares.APIAuth())
 	{
 		// nested group
 		ci := apiAuthorized.Group("ci")
