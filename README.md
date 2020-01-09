@@ -1,0 +1,1 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/tmpbook/GC4K)](https://goreportcard.com/report/github.com/tmpbook/GC4K)
