@@ -16,6 +16,7 @@ type User struct {
 	Apps     []App   //与App为one2many关系
 }
 
+// Profile 描述信息模型
 type Profile struct {
 	gorm.Model
 	UserID  uint   `gorm:"index"` // 外键 (属于), tag `index`是为该列创建索引

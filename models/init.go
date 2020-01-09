@@ -19,16 +19,16 @@ func init() {
 		panic("read config error")
 	}
 
-	db_driver, err := cfg.GetValue("db-dev", "db_driver")
+	dbDriver, err := cfg.GetValue("db-dev", "db_driver")
 	if err != nil {
 		panic("read config error")
 	}
-	db_dsn, err := cfg.GetValue("db-dev", "db_dsn")
+	dbDsn, err := cfg.GetValue("db-dev", "db_dsn")
 	if err != nil {
 		panic("read config error")
 	}
 
-	DB, err = gorm.Open(db_driver, db_dsn)
+	DB, err = gorm.Open(dbDriver, dbDsn)
 
 	if err != nil {
 		fmt.Printf("database connect error %v", err)
