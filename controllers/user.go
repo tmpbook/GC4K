@@ -9,6 +9,7 @@ import (
 	"github.com/tmpbook/GC4K/types"
 )
 
+// 用户注册
 func UserRegister(c *gin.Context) {
 	service := services.UserRegister{}
 	if err := c.ShouldBind(&service); err == nil {
@@ -20,6 +21,7 @@ func UserRegister(c *gin.Context) {
 
 }
 
+// 用户认证
 func UserAuth(c *gin.Context) {
 	service := services.UserLogin{}
 	if err := c.ShouldBind(&service); err == nil {

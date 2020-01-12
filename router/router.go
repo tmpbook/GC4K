@@ -12,7 +12,7 @@ func RegisterRouter(r *gin.Engine) {
 	r.POST("/auth", controllers.UserAuth)
 	apiAuthorized := r.Group("/api")
 	// 单路由的 middleware
-	apiAuthorized.Use(middlewares.UserAuth(), middlewares.APIAuth())
+	apiAuthorized.Use(middlewares.APIAuth())
 	{
 		// nested group
 		ci := apiAuthorized.Group("ci")
