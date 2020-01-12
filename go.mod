@@ -9,4 +9,7 @@ require (
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/jinzhu/gorm v1.9.11
 	golang.org/x/crypto v0.0.0-20190325154230-a5d413f7728c
+	gopkg.in/gcfg.v1 v1.2.3
+	gopkg.in/go-playground/validator.v8 v8.18.2
+	gopkg.in/warnings.v0 v0.1.2 // indirect
 )

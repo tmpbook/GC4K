@@ -9,5 +9,5 @@ import (
 // CICreate ...
 func CICreate(c *gin.Context) {
 	services.DoCreateCI()
-	c.JSON(201, types.ResponseBody{Code: 0, Message: "ci created"})
+	c.JSON(201, types.ResponseBody{Code: 0, Msg: "ci created"})
 }

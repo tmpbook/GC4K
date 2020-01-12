@@ -19,7 +19,7 @@ func main() {
 
 	// 404 的时候返回自定义 json
 	r.NoRoute(func(c *gin.Context) {
-		c.JSON(404, types.ResponseBody{Code: 404, Message: "page not found"})
+		c.JSON(404, types.ResponseBody{Code: 404, Msg: "page not found"})
 	})
 
 	// 注册路由

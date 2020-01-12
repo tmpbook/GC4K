@@ -9,5 +9,5 @@ import (
 // CDCreate ...
 func CDCreate(c *gin.Context) {
 	services.DoCreateCD()
-	c.JSON(201, types.ResponseBody{Code: 0, Message: "cd created"})
+	c.JSON(201, types.ResponseBody{Code: 0, Msg: "cd created"})
 }
