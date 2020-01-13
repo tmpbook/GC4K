@@ -8,6 +8,8 @@ import (
 
 // RegisterRouter 注册路由
 func RegisterRouter(r *gin.Engine) {
+	r.POST("/register", controllers.UserRegister)
+	r.POST("/auth", controllers.UserAuth)
 	apiAuthorized := r.Group("/api")
 	// 单路由的 middleware
 	apiAuthorized.Use(middlewares.APIAuth())

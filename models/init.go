@@ -19,11 +19,11 @@ func init() {
 		panic("read config error")
 	}
 
-	dbDriver, err := cfg.GetValue("db-dev", "db_driver")
+	dbDriver, err := cfg.GetValue("DbDev", "DbDriver")
 	if err != nil {
 		panic("read config error")
 	}
-	dbDsn, err := cfg.GetValue("db-dev", "db_dsn")
+	dbDsn, err := cfg.GetValue("DbDev", "DbDsn")
 	if err != nil {
 		panic("read config error")
 	}

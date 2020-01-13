@@ -16,7 +16,6 @@ type User struct {
 	Apps     []App   //与App为one2many关系
 }
 
-// Profile 描述信息模型
 type Profile struct {
 	gorm.Model
 	UserID  uint   `gorm:"index"` // 外键 (属于), tag `index`是为该列创建索引
@@ -24,20 +23,9 @@ type Profile struct {
 	Address string `json:"address"`
 }
 
-const (
-	// PassWordCost 密码加密难度
-	PassWordCost = 12
-	// Active 激活用户
-	Active string = "active"
-	// Inactive 未激活用户
-	Inactive string = "inactive"
-	// Suspend 被封禁用户
-	Suspend string = "suspend"
-)
-
 // SetPassword 设置密码
 func (user *User) SetPassword(password string) error {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), PassWordCost)
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		return err
 	}
@@ -47,6 +35,25 @@ func (user *User) SetPassword(password string) error {
 
 // CheckPassword 校验密码
 func (user *User) CheckPassword(password string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+
+	var dbuser User
+	DB.Model(User{}).Where("username = ?", user.Username).First(&dbuser)
+	db_password := dbuser.Password
+
+	err := bcrypt.CompareHashAndPassword([]byte(db_password), []byte(password))
 	return err == nil
+}
+
+// CheckExist 校验已有用户
+func (user *User) CheckExist() int {
+	count := 0
+	DB.Model(User{}).Where("username = ?", user.Username).Count(&count)
+
+	return count
+}
+
+// 新增用户记录
+func (user *User) Create() error {
+	// 创建用户
+	return DB.Create(&user).Error
 }
